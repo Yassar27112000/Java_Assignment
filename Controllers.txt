@@ -1,0 +1,24 @@
+package com.example.demo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api")
+public class UserLocationController {
+    @Autowired
+    private UserLocationRepository userLocationRepository;
+
+    @PostMapping("/create_data")
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserLocation createData(@RequestBody UserLocation userLocation) {
+        return userLocationRepository.save(userLocation);
+    }
+
+    @PatchMapping("/update_data")
+    public UserLocation updateData(@RequestBody UserLocation userLocation) {
+        // Implement update logic
+        return userLocationRepository.save(userLocation);
+    }
+}

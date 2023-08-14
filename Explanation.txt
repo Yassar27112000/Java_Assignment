@@ -1,0 +1,14 @@
+1:- Define Entity Class:
+Create a class named UserLocation in the src/main/java/com/example/userlocationapi directory.
+
+2:-Create Repository:
+Create a repository interface UserLocationRepository in the same package.
+
+3:-Implement Controller:
+Create a controller class UserLocationController in the same package.
+
+4:-Your Spring Boot application will start, and you can access the REST APIs at the specified endpoints:
+
+Create User Location: POST http://localhost:8080/api/create_data
+Update User Location: PATCH http://localhost:8080/api/update_data/{id}
+Get Nearest Users: GET http://localhost:8080/api/get_users/{n}

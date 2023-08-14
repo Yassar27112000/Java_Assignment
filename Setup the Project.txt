@@ -1,0 +1,2 @@
+mkdir springboot-location-project
+cd springboot-location-project

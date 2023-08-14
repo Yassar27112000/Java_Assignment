@@ -1,0 +1,40 @@
+package com.example.userlocationapi;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api")
+public class UserLocationController {
+    @Autowired
+    private UserLocationRepository userLocationRepository;
+
+    @PostMapping("/create_data")
+    public ResponseEntity<?> createData(@RequestBody UserLocation userLocation) {
+        // Implement admin check and CRUD operations
+        userLocationRepository.save(userLocation);
+        return ResponseEntity.ok("User location created successfully.");
+    }
+
+    @PatchMapping("/update_data/{id}")
+    public ResponseEntity<?> updateData(@PathVariable Long id, @RequestBody UserLocation userLocation) {
+        // Implement admin check and CRUD operations
+        UserLocation existingUserLocation = userLocationRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User location not found with id: " + id));
+        // Update fields as needed
+        userLocationRepository.save(existingUserLocation);
+        return ResponseEntity.ok("User location updated successfully.");
+    }
+
+    @GetMapping("/get_users/{n}")
+    public ResponseEntity<?> getUsers(@PathVariable int n) {
+        // Implement reader check and nearest user location retrieval
+        // Return a list of nearest N users
+        List<UserLocation> nearestUsers = userLocationRepository.findAll();
+        // Implement logic to filter and return N nearest users from (0, 0)
+        return ResponseEntity.ok(nearestUsers);
+    }
+}
